@@ -1,0 +1,55 @@
+/*
+ * mxpsd - Matrix Push Server Daemon
+ * Copyright (C) 2019 Kamax Sarl
+ *
+ * https://www.kamax.io/
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'idea'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+group = 'io.kamax.matrix'
+mainClassName = 'io.kamax.matrix.mxpsd.HttpMxpsdApp'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.3'
+    }
+}
+
+repositories {
+    jcenter()
+    maven { url "https://kamax.io/maven/releases" }
+    maven { url "https://kamax.io/maven/snapshots" }
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-simple:1.7.25'
+
+    compile 'org.yaml:snakeyaml:1.23'
+    compile 'io.kamax:matrix-java-sdk:0.0.17-5-g61828fd'
+    compile 'io.undertow:undertow-core:2.0.16.Final'
+
+    testCompile 'junit:junit:4.12'
+}
